@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect, useRef } from "react"
+export default function App() {
+  const [mouseX, setMouseX] = useState("")
+  const [mouseY, setMouseY] = useState("")
 
-function App() {
+  useEffect(() => {
+    const handleMouse = (e) => {
+      setMouseX(e.clientX)
+      console.log(e)
+      setMouseY(e.clientY)
+    }
+    setTimeout(() => {
+      window.addEventListener("mousemove", handleMouse)
+    }, 3000)
+  })
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: "40px" }}>
+      <h1>{mouseX}</h1>
+      <h1>{mouseY}</h1>
     </div>
-  );
+  )
 }
-
-export default App;
